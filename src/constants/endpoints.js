@@ -1,5 +1,5 @@
-const MDB_API_KEY = process.env.MDB_API_KEY;
-//const MDB_API_KEY = "750d717aee423aa3221d0ac25396478e";
+//const MDB_API_KEY = process.env.MDB_API_KEY;
+const MDB_API_KEY = "750d717aee423aa3221d0ac25396478e";
 
 export const URL = "https://api.themoviedb.org/3";
 
