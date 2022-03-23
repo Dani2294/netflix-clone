@@ -33,7 +33,8 @@ export const Row = styled.div`
         py-2
         px-6
         space-x-3
-        overflow-scroll
+        overflow-x-scroll
+        overflow-y-hidden
 
         lg:px-14
     `}
@@ -66,7 +67,7 @@ export const Card = styled.div`
 		transform: scale(1.05);
 
 		& > div {
-			transform: translateY(-1px);
+			transform: translateY(0px);
 		}
 	}
 `;
@@ -116,7 +117,7 @@ export const MetaHeader = styled.div`
 
 export const MetaTitle = styled.h3`
 	${tw`
-            text-xl
+            text-lg
             font-bold
             leading-[1.1]
             flex-1

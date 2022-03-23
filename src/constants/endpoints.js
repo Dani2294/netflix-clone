@@ -11,7 +11,7 @@ export const ENDPOINTS = {
 		},
 		{
 			title: "New release",
-			url: `/movie/now_playing?api_key=${MDB_API_KEY}&language=en-US`,
+			url: `/movie/now_playing?api_key=${MDB_API_KEY}&language=en-US&append_to_response=videos`,
 		},
 		{
 			title: "Action",

@@ -7,3 +7,5 @@ export { default as Hero } from "./hero";
 export { default as Form } from "./form";
 export { default as Slides } from "./slides";
 export { default as LoadingSlides } from "./loading-slides";
+export { default as Modal } from "./modal";
+export { default as PlayerWrapper } from "./player-wrapper";

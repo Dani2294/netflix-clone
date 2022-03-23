@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Header, LoadingSlides } from "../components";
+import axios from "axios";
+import { Header, LoadingSlides, Modal, PlayerWrapper } from "../components";
 import FooterContainer from "./footer";
 import HeaderContainer from "./header";
 import SlidesContainer from "./slides";
@@ -11,22 +12,16 @@ export default function BrowseContainer({ result }) {
 		JSON.parse(localStorage.getItem("newflix-myList")) || []
 	);
 	const [featureContent, setFeatureContent] = useState([]);
+	const [modal, setModal] = useState({ isOpen: false, data: {}, video: null });
+	const [showPlayer, setShowPlayer] = useState(false);
 
 	useEffect(() => {
 		setContent(result[category]);
-		setFeatureContent(
-			content[0]?.slides[0]
-			/* content[Math.floor(Math.random() * content.length)]?.slides[
-					Math.floor(Math.random() * 21)
-				].poster_path ||
-				content[Math.floor(Math.random() * content.length)]?.slides[
-					Math.floor(Math.random() * 21)
-				].backdrop_path */
-		);
-		console.log(featureContent);
+		setFeatureContent(content[0]?.slides[0]);
+		//console.log(featureContent);
 		return () => null;
 	}, [result, category, content]);
-	console.log(content);
+	//console.log(content);
 
 	const handleMyList = (action, movie) => {
 		if (action === "add") {
@@ -47,6 +42,48 @@ export default function BrowseContainer({ result }) {
 				localStorage.setItem("newflix-myList", JSON.stringify(filteredArr));
 			}
 		}
+		//console.log(myList);
+	};
+
+	const handleModalData = (id) => {
+		if (category === "movies") {
+			axios
+				.get(
+					`https://api.themoviedb.org/3/movie/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
+				)
+				.then(({ data }) => {
+					setModal((prevState) => ({
+						isOpen: !prevState.isOpen,
+						data,
+						video:
+							data.videos?.results
+								?.filter((vid) => vid.type === "Trailer")
+								.find((item) => item.type === "Trailer")?.key || null,
+					}));
+				})
+				.catch((error) => {
+					console.log(error.message);
+				});
+		} else if (category === "series") {
+			axios
+				.get(
+					`https://api.themoviedb.org/3/tv/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
+				)
+				.then(({ data }) => {
+					setModal((prevState) => ({
+						isOpen: !prevState.isOpen,
+						data,
+						video:
+							data.videos?.results
+								?.filter((vid) => vid.type === "Trailer")
+								.find((item) => item.type === "Trailer")?.key || null,
+					}));
+				})
+				.catch((error) => {
+					console.log(error.message);
+				});
+		}
+		//setModal((prevState) => ({ isOpen: !prevState.isOpen, data: resultData }));
 	};
 
 	return (
@@ -66,8 +103,11 @@ export default function BrowseContainer({ result }) {
 					</Header.FeatureTitle>
 					<Header.FeatureText>{featureContent?.overview}</Header.FeatureText>
 					<Header.FeatureButtons>
-						<Header.FeatureButton playBtn="true">Play</Header.FeatureButton>
-						<Header.FeatureButton>More infos</Header.FeatureButton>
+						<Header.FeatureButton playBtn="true">Trailer</Header.FeatureButton>
+						<Header.FeatureButton
+							onClick={() => handleModalData(featureContent.id)}>
+							More infos
+						</Header.FeatureButton>
 					</Header.FeatureButtons>
 				</Header.Feature>
 			</HeaderContainer>
@@ -76,9 +116,58 @@ export default function BrowseContainer({ result }) {
 					content={content}
 					myList={myList}
 					handleMyList={handleMyList}
+					handleModalData={handleModalData}
 				/>
 			) : (
 				<LoadingSlides />
+			)}
+			{modal.isOpen && (
+				<Modal setModal={setModal} modal={modal}>
+					<Modal.Hero
+						src={`https://image.tmdb.org/t/p/original${modal.data?.poster_path}`}>
+						<Modal.HeroActionsPlay
+							onClick={() => setShowPlayer(!showPlayer)}
+							playBtn="true">
+							Trailer
+						</Modal.HeroActionsPlay>
+						{myList.find((item) => item.id === modal.data.id) ? (
+							<Modal.HeroActionsList
+								title="remove from my list"
+								onClick={() => handleMyList("remove", modal.data)}
+								rotate="45deg">
+								<img src="/assets/icons/add.png" alt="remove from my list" />
+							</Modal.HeroActionsList>
+						) : (
+							<Modal.HeroActionsList
+								title="add to my list"
+								onClick={() => handleMyList("add", modal.data)}>
+								<img src="/assets/icons/add.png" alt="add to my list" />
+							</Modal.HeroActionsList>
+						)}
+					</Modal.Hero>
+					<Modal.Content>
+						<Modal.Title>
+							{modal.data.title ||
+								modal.data.original_title ||
+								modal.data.name ||
+								modal.data.original_name}
+						</Modal.Title>
+						<Modal.Genres>
+							{modal.data.genres.map((genre) => genre.name).join(" | ")}
+						</Modal.Genres>
+						<Modal.Overview>{modal.data.overview}</Modal.Overview>
+						<Modal.Recommendation>
+							Recommended at {(Math.ceil(modal.data.vote_average) * 100) / 10}%
+						</Modal.Recommendation>
+					</Modal.Content>
+				</Modal>
+			)}
+			{showPlayer && (
+				<PlayerWrapper urlKey={modal.video}>
+					<PlayerWrapper.CloseBtn onClick={() => setShowPlayer(!showPlayer)}>
+						<img src="/assets/icons/add.png" alt="remove from my list" />
+					</PlayerWrapper.CloseBtn>
+				</PlayerWrapper>
 			)}
 			<FooterContainer />
 		</>

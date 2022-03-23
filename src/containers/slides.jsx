@@ -1,7 +1,12 @@
 import React from "react";
 import { Slides } from "../components";
 
-export default function SlidesContainer({ content, myList, handleMyList }) {
+export default function SlidesContainer({
+	content,
+	myList,
+	handleMyList,
+	handleModalData,
+}) {
 	const truncateText = (text) => {
 		return text.substring(0, 100) + (text.length > 100 ? "..." : "");
 	};
@@ -33,8 +38,9 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 												movie.original_name}
 										</Slides.MetaTitle>
 										<Slides.MetaButtons>
-											{myList.includes(movie) ? (
+											{myList.find((item) => item.id === movie.id) ? (
 												<Slides.MetaButton
+													title="remove from my list"
 													onClick={() => handleMyList("remove", movie)}
 													rotate="45deg">
 													<img
@@ -44,6 +50,7 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 												</Slides.MetaButton>
 											) : (
 												<Slides.MetaButton
+													title="add to my list"
 													onClick={() => handleMyList("add", movie)}>
 													<img
 														src="/assets/icons/add.png"
@@ -51,7 +58,10 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 													/>
 												</Slides.MetaButton>
 											)}
-											<Slides.MetaButton rotate="90deg">
+											<Slides.MetaButton
+												title="see more"
+												onClick={() => handleModalData(movie.id)}
+												rotate="90deg">
 												<img
 													src="/assets/icons/chevron-right.png"
 													alt="see more"
@@ -97,8 +107,9 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 												movie.original_name}
 										</Slides.MetaTitle>
 										<Slides.MetaButtons>
-											{myList.includes(movie) ? (
+											{myList.find((item) => item.id === movie.id) ? (
 												<Slides.MetaButton
+													title="remove from my list"
 													onClick={() => handleMyList("remove", movie)}
 													rotate="45deg">
 													<img
@@ -108,6 +119,7 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 												</Slides.MetaButton>
 											) : (
 												<Slides.MetaButton
+													title="add to my list"
 													onClick={() => handleMyList("add", movie)}>
 													<img
 														src="/assets/icons/add.png"
@@ -115,7 +127,10 @@ export default function SlidesContainer({ content, myList, handleMyList }) {
 													/>
 												</Slides.MetaButton>
 											)}
-											<Slides.MetaButton rotate="90deg">
+											<Slides.MetaButton
+												title="see more"
+												onClick={() => handleModalData(movie.id)}
+												rotate="90deg">
 												<img
 													src="/assets/icons/chevron-right.png"
 													alt="see more"

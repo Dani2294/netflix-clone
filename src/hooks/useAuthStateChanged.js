@@ -19,7 +19,7 @@ export default function useAuthStateChanged() {
 				};
 				localStorage.setItem("newflix-authUser", JSON.stringify(userData));
 				setUser(userData);
-				console.log(userData);
+				//console.log(userData);
 			} else {
 				localStorage.removeItem("newflix-authUser");
 				setUser(null);
