@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import { useSpring, animated } from "react-spring";
 import {
 	Background,
 	Container,
+	CloseWrapper,
+	CloseBtn,
 	Hero,
 	HeroActions,
 	HeroActionsPlay,
@@ -11,6 +14,7 @@ import {
 	Overview,
 	Recommendation,
 	Genres,
+	ReleaseDate,
 } from "./styles/modal";
 
 export default function Modal({ children, ...props }) {
@@ -41,12 +45,28 @@ export default function Modal({ children, ...props }) {
 		return () => document.removeEventListener("keydown", escapePress);
 	}, [escapePress]);
 
+	const propsSpring = useSpring({
+		from: { scale: 0 },
+		to: { scale: 1 },
+		config: { duration: 350 },
+	});
+
 	return (
 		<Background ref={modalRef} onClick={closeModalBgClick} {...props}>
-			<Container>{children}</Container>
+			<animated.div style={{ ...propsSpring }}>
+				<Container>{children}</Container>
+			</animated.div>
 		</Background>
 	);
 }
+
+Modal.CloseBtn = function ModalCloseBtn({ children, ...props }) {
+	return (
+		<CloseWrapper>
+			<CloseBtn {...props}>{children}</CloseBtn>
+		</CloseWrapper>
+	);
+};
 
 Modal.Hero = function ModalHero({ children, ...props }) {
 	return (
@@ -82,4 +102,8 @@ Modal.Recommendation = function ModalRecommendation({ children, ...props }) {
 
 Modal.Genres = function ModalGenres({ children, ...props }) {
 	return <Genres {...props}>{children}</Genres>;
+};
+
+Modal.ReleaseDate = function ModalReleaseDate({ children, ...props }) {
+	return <ReleaseDate {...props}>{children}</ReleaseDate>;
 };

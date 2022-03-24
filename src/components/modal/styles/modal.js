@@ -12,14 +12,17 @@ export const Background = styled.div`
         w-full
         bg-black
         bg-opacity-75
+        overflow-y-scroll
+        px-2
     `}
 `;
 
 export const Container = styled.div`
 	${tw`
+        relative
         max-w-[1024px]
         w-full
-        mx-2
+        mx-auto
         mt-10
         grid
         grid-rows-2
@@ -28,6 +31,30 @@ export const Container = styled.div`
 
         lg:mx-4
     `}
+`;
+
+export const CloseWrapper = styled.div`
+	${tw`
+        absolute
+        top-0
+        right-0
+        bg-black
+        bg-opacity-20
+        flex
+        items-center
+        justify-between
+        p-3
+        z-10
+    `}
+`;
+
+export const CloseBtn = styled(MetaButton)`
+	transform: rotate(45deg);
+	width: 30px;
+
+	@media (max-width: 600px) {
+		width: 20px;
+	}
 `;
 
 export const Hero = styled.div`
@@ -64,10 +91,10 @@ export const HeroActions = styled.div`
 export const HeroActionsPlay = styled(FeatureButton)``;
 
 export const HeroActionsList = styled(MetaButton)`
-	width: 27px;
+	width: 20px;
 
 	@media (max-width: 600px) {
-		width: 22px;
+		width: 16px;
 	}
 `;
 
@@ -122,5 +149,14 @@ export const Genres = styled.div`
         text-lg
         font-bold
         mt-4
+    `}
+`;
+
+export const ReleaseDate = styled.p`
+	${tw`
+        text-[rgba(255,255,255,0.6)]
+        text-lg
+        font-bold
+        mb-4
     `}
 `;

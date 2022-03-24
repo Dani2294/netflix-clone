@@ -196,7 +196,8 @@ export const FeatureButton = styled.button`
             rounded
             px-8
             py-2
-            text-[1.6rem]
+            mt-2
+            text-[1.25rem]
             transition
 
             hover:opacity-70

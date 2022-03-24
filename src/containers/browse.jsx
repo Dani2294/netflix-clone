@@ -18,10 +18,9 @@ export default function BrowseContainer({ result }) {
 	useEffect(() => {
 		setContent(result[category]);
 		setFeatureContent(content[0]?.slides[0]);
-		//console.log(featureContent);
+
 		return () => null;
 	}, [result, category, content]);
-	//console.log(content);
 
 	const handleMyList = (action, movie) => {
 		if (action === "add") {
@@ -42,52 +41,47 @@ export default function BrowseContainer({ result }) {
 				localStorage.setItem("newflix-myList", JSON.stringify(filteredArr));
 			}
 		}
-		//console.log(myList);
 	};
 
 	const handleModalData = (id) => {
-		if (category === "movies") {
-			axios
-				.get(
-					`https://api.themoviedb.org/3/movie/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
-				)
-				.then(({ data }) => {
-					setModal((prevState) => ({
-						isOpen: !prevState.isOpen,
-						data,
-						video:
-							data.videos?.results
-								?.filter((vid) => vid.type === "Trailer")
-								.find((item) => item.type === "Trailer")?.key || null,
-					}));
-				})
-				.catch((error) => {
-					console.log(error.message);
-				});
-		} else if (category === "series") {
-			axios
-				.get(
-					`https://api.themoviedb.org/3/tv/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
-				)
-				.then(({ data }) => {
-					setModal((prevState) => ({
-						isOpen: !prevState.isOpen,
-						data,
-						video:
-							data.videos?.results
-								?.filter((vid) => vid.type === "Trailer")
-								.find((item) => item.type === "Trailer")?.key || null,
-					}));
-				})
-				.catch((error) => {
-					console.log(error.message);
-				});
-		}
-		//setModal((prevState) => ({ isOpen: !prevState.isOpen, data: resultData }));
+		axios
+			.get(
+				`https://api.themoviedb.org/3/tv/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
+			)
+			.then(({ data }) => {
+				setModal((prevState) => ({
+					isOpen: !prevState.isOpen,
+					data,
+					video:
+						data.videos?.results
+							?.filter((vid) => vid.type === "Trailer")
+							.find((item) => item.type === "Trailer")?.key || null,
+				}));
+			})
+			.catch((error) => {
+				//console.log(error.message);
+				axios
+					.get(
+						`https://api.themoviedb.org/3/movie/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`
+					)
+					.then(({ data }) => {
+						setModal((prevState) => ({
+							isOpen: !prevState.isOpen,
+							data,
+							video:
+								data.videos?.results
+									?.filter((vid) => vid.type === "Trailer")
+									.find((item) => item.type === "Trailer")?.key || null,
+						}));
+					})
+					.catch((error) => {
+						console.log(error.message);
+					});
+			});
 	};
 
 	return (
-		<>
+		<div className={`${modal.isOpen ? "lock-body" : ""}`}>
 			<HeaderContainer
 				connexion
 				browsePage
@@ -103,7 +97,14 @@ export default function BrowseContainer({ result }) {
 					</Header.FeatureTitle>
 					<Header.FeatureText>{featureContent?.overview}</Header.FeatureText>
 					<Header.FeatureButtons>
-						<Header.FeatureButton playBtn="true">Trailer</Header.FeatureButton>
+						<Header.FeatureButton
+							onClick={() => {
+								handleModalData(featureContent.id);
+								setShowPlayer(!showPlayer);
+							}}
+							playBtn="true">
+							Trailer
+						</Header.FeatureButton>
 						<Header.FeatureButton
 							onClick={() => handleModalData(featureContent.id)}>
 							More infos
@@ -123,6 +124,15 @@ export default function BrowseContainer({ result }) {
 			)}
 			{modal.isOpen && (
 				<Modal setModal={setModal} modal={modal}>
+					<Modal.CloseBtn
+						onClick={() =>
+							setModal((prevState) => ({
+								...prevState,
+								isOpen: !prevState.isOpen,
+							}))
+						}>
+						<img src="/assets/icons/add.png" alt="close modal" />
+					</Modal.CloseBtn>
 					<Modal.Hero
 						src={`https://image.tmdb.org/t/p/original${modal.data?.poster_path}`}>
 						<Modal.HeroActionsPlay
@@ -156,6 +166,7 @@ export default function BrowseContainer({ result }) {
 							{modal.data.genres.map((genre) => genre.name).join(" | ")}
 						</Modal.Genres>
 						<Modal.Overview>{modal.data.overview}</Modal.Overview>
+						<Modal.ReleaseDate>{modal.data.release_date}</Modal.ReleaseDate>
 						<Modal.Recommendation>
 							Recommended at {(Math.ceil(modal.data.vote_average) * 100) / 10}%
 						</Modal.Recommendation>
@@ -164,12 +175,14 @@ export default function BrowseContainer({ result }) {
 			)}
 			{showPlayer && (
 				<PlayerWrapper urlKey={modal.video}>
-					<PlayerWrapper.CloseBtn onClick={() => setShowPlayer(!showPlayer)}>
+					<PlayerWrapper.CloseBtn
+						title="Close modal"
+						onClick={() => setShowPlayer(!showPlayer)}>
 						<img src="/assets/icons/add.png" alt="remove from my list" />
 					</PlayerWrapper.CloseBtn>
 				</PlayerWrapper>
 			)}
 			<FooterContainer />
-		</>
+		</div>
 	);
 }
