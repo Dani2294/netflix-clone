@@ -18,7 +18,7 @@ import {
 } from "./styles/modal";
 
 export default function Modal({ children, ...props }) {
-	console.log(props);
+	//console.log(props);
 	const { setModal, modal } = props;
 	const modalRef = useRef();
 

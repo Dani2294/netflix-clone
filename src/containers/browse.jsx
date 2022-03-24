@@ -70,7 +70,7 @@ export default function BrowseContainer({ result }) {
 							data,
 							video:
 								data.videos?.results
-									?.filter((vid) => vid.type === "Trailer")
+									?.filter((vid) => vid.site === "YouTube")
 									.find((item) => item.type === "Trailer")?.key || null,
 						}));
 					})
@@ -174,13 +174,11 @@ export default function BrowseContainer({ result }) {
 				</Modal>
 			)}
 			{showPlayer && (
-				<PlayerWrapper urlKey={modal.video}>
-					<PlayerWrapper.CloseBtn
-						title="Close modal"
-						onClick={() => setShowPlayer(!showPlayer)}>
-						<img src="/assets/icons/add.png" alt="remove from my list" />
-					</PlayerWrapper.CloseBtn>
-				</PlayerWrapper>
+				<PlayerWrapper
+					urlKey={modal.video}
+					showPlayer={showPlayer}
+					setShowPlayer={setShowPlayer}
+				/>
 			)}
 			<FooterContainer />
 		</div>

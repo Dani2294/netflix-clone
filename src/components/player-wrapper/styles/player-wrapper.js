@@ -1,33 +1,48 @@
 import tw, { styled } from "twin.macro";
-import { MetaButton } from "../../slides/styles/slides";
 
 export const Wrapper = styled.div`
 	${tw`
         fixed
         inset-0
-        pt-[56.25%]
         w-full
         h-full
         bg-black
     `}
 `;
 
-export const CloseBtn = styled(MetaButton)`
+export const CloseBtn = styled.div`
 	${tw`
         absolute
-        top-[20px]
+        top-[65px]
         right-[50%]
-        translate-x-1/2
         z-50
+        rounded-full
+        p-2
         border-2
         border-white
-        rounded-full
-        p-1.5
+        bg-transparent
+        cursor-pointer
+        transition
+        duration-300
     `}
-	transform: rotate(45deg);
-	width: 40px;
-
-	@media (max-width: 600px) {
+    transform: translate(50%) rotate(45deg);
+	& > img {
+		filter: brightness(0) invert(1);
 		width: 30px;
+		user-select: none;
+
+        @media (max-width: 600px) {
+            width: 22px;
 	}
+`;
+
+export const Text = styled.h1`
+	${tw`
+        text-white
+        text-5xl
+        font-bold
+        text-center
+        mt-[40%]
+        px-4
+    `}
 `;

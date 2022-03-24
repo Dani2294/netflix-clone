@@ -15,65 +15,65 @@ export const ENDPOINTS = {
 		},
 		{
 			title: "Action",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=28`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=28`,
 		},
 		{
 			title: "Aventure",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=12`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=12`,
 		},
 		{
 			title: "Animation",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=16`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=16`,
 		},
 		{
 			title: "Comedy",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=35`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35`,
 		},
 		{
 			title: "Documentary",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=99`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=99`,
 		},
 		{
 			title: "Horror",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=27`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=27`,
 		},
 		{
 			title: "Science Fiction",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=878`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=878`,
 		},
 	],
 	series: [
 		{
 			title: "Action - Aventure",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=10759`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=10759`,
 		},
 		{
 			title: "Animation",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=16`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=16`,
 		},
 		{
 			title: "Comedy",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=35`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35`,
 		},
 		{
 			title: "Crime",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=80`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=80`,
 		},
 		{
 			title: "Drama",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=18`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=18`,
 		},
 		{
 			title: "Documentary",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=35`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35`,
 		},
 		{
 			title: "Family",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=10751`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=10751`,
 		},
 		{
 			title: "Sci-Fi - Fantasy",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=true&page=1&with_genres=10765`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=10765`,
 		},
 	],
 };
