@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import {
 	Background,
@@ -23,7 +23,24 @@ export default function Header({ bg = true, children, ...props }) {
 }
 
 Header.Wrapper = function HeaderWrapper({ children, ...props }) {
-	return <Wrapper {...props}>{children}</Wrapper>;
+	const [isDark, setIsDark] = useState(false);
+
+	useEffect(() => {
+		const navBarDark = window.addEventListener("scroll", () => {
+			const isDark = window.scrollY > 80;
+			setIsDark(isDark);
+		});
+
+		return () => {
+			window.removeEventListener(navBarDark);
+		};
+	}, []);
+
+	return (
+		<Wrapper isDark={isDark} {...props}>
+			{children}
+		</Wrapper>
+	);
 };
 
 Header.Group = function HeaderGroup({ children, ...props }) {

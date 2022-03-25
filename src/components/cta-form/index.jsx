@@ -23,7 +23,11 @@ CtaForm.Input = function CtaFormInput({ ...props }) {
 
 CtaForm.Button = function CtaFormButton({ children, ...props }) {
 	return (
-		<Button {...props}>
+		<Button
+			href="mailto:agbato.dani@gmail.com?subject=From Netflix Clone&body=Hello Daniel, I would like to talk about you and your project..."
+			target="_blank"
+			rel="noreferrer"
+			{...props}>
 			{children} <img src="/assets/icons/chevron-right.png" alt="Try Now" />
 		</Button>
 	);

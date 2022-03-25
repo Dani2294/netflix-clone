@@ -29,6 +29,7 @@ export const Title = styled.h2`
 export const Row = styled.div`
 	${tw`
         flex
+        items-end
         mt-5
         py-2
         px-6
@@ -55,9 +56,10 @@ export const Card = styled.div`
         cursor-pointer
         rounded
         h-[350px]
+        w-full
         overflow-hidden
 
-        lg:h-auto
+        lg:(h-full)
     `}
 	flex-shrink: 0;
 
@@ -75,6 +77,7 @@ export const Card = styled.div`
 export const Image = styled.img`
 	${tw`
         max-w-none
+        h-[450px]
     `}
 `;
 

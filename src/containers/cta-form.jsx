@@ -5,11 +5,12 @@ export default function CtaFormContainer() {
 	return (
 		<CtaForm>
 			<CtaForm.Text>
-				Ready to watch? Enter your email to create or restart your membership.
+				If you like this Netflix Clone and want to get in touch with me. Feel
+				free to contact me.
 			</CtaForm.Text>
 			<CtaForm.Frame>
-				<CtaForm.Input placeholder="Email address" />
-				<CtaForm.Button>Get Started</CtaForm.Button>
+				<CtaForm.Input placeholder="Click on the button to send me a email" />
+				<CtaForm.Button>Contact Me</CtaForm.Button>
 			</CtaForm.Frame>
 		</CtaForm>
 	);

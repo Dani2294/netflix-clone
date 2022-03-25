@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
         w-full
         h-full
         bg-black
+        z-[100]
+        overflow-y-hidden
+        overscroll-none
     `}
 `;
 

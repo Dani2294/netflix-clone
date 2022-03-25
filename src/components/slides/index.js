@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useSpring, animated, useTransition } from "react-spring";
 import {
 	Container,
 	Title,
@@ -27,7 +29,16 @@ Slides.Row = function SlidesRow({ children, ...props }) {
 };
 
 Slides.Card = function SlidesCard({ children, ...props }) {
-	return <Card {...props}>{children}</Card>;
+	const propsSpring = useSpring({
+		from: { opacity: 0, translateX: "400px" },
+		to: { opacity: 1, translateX: "0px" },
+		config: { duration: 150 },
+	});
+	return (
+		<animated.div style={{ ...propsSpring }}>
+			<Card {...props}>{children}</Card>
+		</animated.div>
+	);
 };
 
 Slides.Image = function SlidesImage({ ...props }) {

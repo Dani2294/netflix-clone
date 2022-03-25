@@ -2,6 +2,7 @@ import tw, { styled } from "twin.macro";
 
 export const Container = styled.div`
 	${tw`
+        mt-20
         mx-4
         lg:mx-[3.5rem]
     `}

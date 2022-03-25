@@ -31,7 +31,7 @@ export const ENDPOINTS = {
 		},
 		{
 			title: "Documentary",
-			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=99`,
+			url: `/discover/movie?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&include_adult=false&with_genres=99`,
 		},
 		{
 			title: "Horror",
@@ -65,7 +65,7 @@ export const ENDPOINTS = {
 		},
 		{
 			title: "Documentary",
-			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35`,
+			url: `/discover/tv?api_key=${MDB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&include_adult=false&with_genres=35`,
 		},
 		{
 			title: "Family",

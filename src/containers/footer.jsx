@@ -33,6 +33,15 @@ export default function FooterContainer() {
 				</Footer.Column>
 			</Footer.Row>
 			<Footer.Text>Netflix France</Footer.Text>
+			<Footer.Credits>
+				Designed and built w/ ❤️ by{" "}
+				<a
+					style={{ textDecoration: "underline" }}
+					target="_blank"
+					href="https://daniel-agbato.vercel.app/">
+					Daniel Agbato
+				</a>
+			</Footer.Credits>
 		</Footer>
 	);
 }

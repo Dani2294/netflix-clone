@@ -6,10 +6,10 @@ export const Container = styled.footer`
         flex-col
         max-w-[1000px]
         mx-auto
-        py-[50px] px-[45px]
+        py-[50px] px-[25px]
         text-[#757575]
 
-        lg:(py-[70px] px-[5px])
+        lg:(py-[70px] px-[15px])
     `}
 `;
 
@@ -55,4 +55,20 @@ export const Link = styled.a`
 export const Text = styled.p`
 	font-size: 16px;
 	margin-top: 40px;
+`;
+
+export const Credits = styled.p`
+	${tw`
+        text-white
+        text-base
+        text-center
+        pt-10
+
+        lg:text-xl
+    `}
+
+	& > a {
+		font-weight: bold;
+		color: #ed5c68;
+	}
 `;

@@ -5,9 +5,9 @@ import { Wrapper, Text, CloseBtn } from "./styles/player-wrapper";
 export default function PlayerWrapper({ ...props }) {
 	const [showClose, setShowClose] = useState(true);
 	const { urlKey, showPlayer, setShowPlayer } = props;
-	console.log(props);
+	//console.log(props);
 	return (
-		<Wrapper className="player-wrapper group" {...props}>
+		<Wrapper className="player-wrapper" {...props}>
 			{urlKey ? (
 				<ReactPlayer
 					onPause={() => setShowClose(!showClose)}
@@ -29,6 +29,7 @@ export default function PlayerWrapper({ ...props }) {
 						position: "absolute",
 						top: "0",
 						left: "0",
+						overscrollBehavior: "none",
 					}}
 					playing={true}
 					controls={true}
@@ -55,14 +56,3 @@ export default function PlayerWrapper({ ...props }) {
 		</Wrapper>
 	);
 }
-/* 
-PlayerWrapper.CloseBtn = function PlayerWrapperCloseBtn({
-	children,
-	...props
-}) {
-	return (
-		<CloseBtn className="close-btn" {...props}>
-			{children}
-		</CloseBtn>
-	);
-}; */

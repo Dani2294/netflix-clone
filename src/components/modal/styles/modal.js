@@ -14,6 +14,7 @@ export const Background = styled.div`
         bg-opacity-75
         overflow-y-scroll
         px-2
+        overscroll-none
     `}
 `;
 
@@ -22,12 +23,15 @@ export const Container = styled.div`
         relative
         max-w-[1024px]
         w-full
+        h-full
         mx-auto
-        mt-10
+        mt-24
         grid
         grid-rows-2
         rounded
         bg-black
+        z-20
+        overscroll-none
 
         lg:mx-4
     `}
@@ -88,7 +92,11 @@ export const HeroActions = styled.div`
     `}
 `;
 
-export const HeroActionsPlay = styled(FeatureButton)``;
+export const HeroActionsPlay = styled(FeatureButton)`
+	${tw`
+        mt-0
+    `}
+`;
 
 export const HeroActionsList = styled(MetaButton)`
 	width: 20px;

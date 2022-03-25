@@ -7,6 +7,7 @@ import {
 	Item,
 	Link,
 	Text,
+	Credits,
 } from "./styles/footer";
 
 export default function Footer({ children, ...props }) {
@@ -35,4 +36,8 @@ Footer.Link = function FooterLink({ children, ...props }) {
 
 Footer.Text = function FooterText({ children, ...props }) {
 	return <Text {...props}>{children}</Text>;
+};
+
+Footer.Credits = function FooterCredits({ children, ...props }) {
+	return <Credits {...props}>{children}</Credits>;
 };

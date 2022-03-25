@@ -88,29 +88,31 @@ export default function BrowseContainer({ result }) {
 				src={`https://image.tmdb.org/t/p/original${featureContent?.poster_path}`}
 				category={category}
 				setCategory={setCategory}>
-				<Header.Feature>
-					<Header.FeatureTitle>
-						{featureContent?.original_title ||
-							featureContent?.title ||
-							featureContent?.name ||
-							featureContent?.original_name}
-					</Header.FeatureTitle>
-					<Header.FeatureText>{featureContent?.overview}</Header.FeatureText>
-					<Header.FeatureButtons>
-						<Header.FeatureButton
-							onClick={() => {
-								handleModalData(featureContent.id);
-								setShowPlayer(!showPlayer);
-							}}
-							playBtn="true">
-							Trailer
-						</Header.FeatureButton>
-						<Header.FeatureButton
-							onClick={() => handleModalData(featureContent.id)}>
-							More infos
-						</Header.FeatureButton>
-					</Header.FeatureButtons>
-				</Header.Feature>
+				{featureContent && (
+					<Header.Feature>
+						<Header.FeatureTitle>
+							{featureContent?.original_title ||
+								featureContent?.title ||
+								featureContent?.name ||
+								featureContent?.original_name}
+						</Header.FeatureTitle>
+						<Header.FeatureText>{featureContent?.overview}</Header.FeatureText>
+						<Header.FeatureButtons>
+							<Header.FeatureButton
+								onClick={() => {
+									handleModalData(featureContent.id);
+									setShowPlayer(!showPlayer);
+								}}
+								playBtn="true">
+								Trailer
+							</Header.FeatureButton>
+							<Header.FeatureButton
+								onClick={() => handleModalData(featureContent.id)}>
+								More infos
+							</Header.FeatureButton>
+						</Header.FeatureButtons>
+					</Header.Feature>
+				)}
 			</HeaderContainer>
 			{content.length > 0 ? (
 				<SlidesContainer

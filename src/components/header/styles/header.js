@@ -4,6 +4,7 @@ export const Background = styled.div`
 	${tw`
         flex
         flex-col
+        pt-8
     `}
 	background: linear-gradient(
 			to top,
@@ -17,17 +18,24 @@ export const Background = styled.div`
 
 export const Wrapper = styled.div`
 	${tw`
+        fixed
+        top-0
+        w-full
         flex
         justify-between
         items-center
         h-20
         px-4
-        pt-2
+        py-2
         gap-x-2
+        transition
+        duration-300
 
         lg:px-[2rem]
-        2xl:pt-6
+        2xl:py-8
     `}
+	background: ${({ isDark }) => (isDark ? "#000" : "rgba(0, 0, 0, 0)")};
+	z-index: ${({ isDark }) => (isDark ? "5" : "0")};
 `;
 
 export const Group = styled.div`
@@ -43,7 +51,7 @@ export const Logo = styled.img`
         h-[34px]
         w-[100px]  
         
-        2xl:(h-[60px] w-[154px])
+        2xl:(h-[50px] w-[144px])
     `}
 	flex-shrink: 0;
 `;

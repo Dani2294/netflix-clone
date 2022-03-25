@@ -18,6 +18,7 @@ export const Container = styled.form`
 export const Text = styled.h3`
 	${tw`
         text-white
+        font-bold
         text-lg
         text-center
         px-[5%]
@@ -27,8 +28,9 @@ export const Text = styled.h3`
         leading-5
 
         sm:px-[10%]
-        lg:(max-w-none text-[19.2px] px-[5%] leading-normal)
+        lg:(max-w-none text-2xl px-[5%] leading-normal)
     `}
+	text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 `;
 
 export const Frame = styled.div`
@@ -52,10 +54,11 @@ export const Input = styled.input`
     `}
 `;
 
-export const Button = styled.button`
+export const Button = styled.a`
 	${tw`
         flex
         items-center
+        justify-center
         mt-5
         font-bold
         h-[50px]
