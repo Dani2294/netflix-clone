@@ -30,7 +30,7 @@ Slides.Row = function SlidesRow({ children, ...props }) {
 
 Slides.Card = function SlidesCard({ children, ...props }) {
 	const propsSpring = useSpring({
-		from: { opacity: 0, translateX: "400px" },
+		from: { opacity: 0, translateX: "-400px" },
 		to: { opacity: 1, translateX: "0px" },
 		config: { duration: 150 },
 	});

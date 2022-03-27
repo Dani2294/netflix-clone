@@ -27,12 +27,12 @@ Header.Wrapper = function HeaderWrapper({ children, ...props }) {
 
 	useEffect(() => {
 		const navBarDark = window.addEventListener("scroll", () => {
-			const isDark = window.scrollY > 80;
+			const isDark = window.scrollY > 10;
 			setIsDark(isDark);
 		});
 
 		return () => {
-			window.removeEventListener(navBarDark);
+			window.removeEventListener("scroll", navBarDark);
 		};
 	}, []);
 

@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
         py-2
         gap-x-2
         transition
-        duration-300
+        duration-200
 
         lg:px-[2rem]
         2xl:py-8

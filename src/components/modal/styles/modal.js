@@ -48,6 +48,7 @@ export const CloseWrapper = styled.div`
         items-center
         justify-between
         p-3
+        rounded-bl-lg
         z-10
     `}
 `;

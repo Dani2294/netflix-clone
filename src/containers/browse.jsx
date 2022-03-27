@@ -27,7 +27,7 @@ export default function BrowseContainer({ result }) {
 			const isAlreadyIn = myList.find((item) => item.id === movie.id);
 			if (isAlreadyIn) return null;
 			setMyList((prevState) => {
-				return [...prevState, movie];
+				return [movie, ...prevState];
 			});
 			localStorage.setItem(
 				"newflix-myList",
@@ -54,7 +54,7 @@ export default function BrowseContainer({ result }) {
 					data,
 					video:
 						data.videos?.results
-							?.filter((vid) => vid.type === "Trailer")
+							?.filter((vid) => vid.site === "YouTube")
 							.find((item) => item.type === "Trailer")?.key || null,
 				}));
 			})
