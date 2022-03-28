@@ -12,7 +12,7 @@ export const Background = styled.div`
 			rgba(0, 0, 0, 0.4) 60%,
 			rgba(0, 0, 0, 0.9) 100%
 		),
-		url(${({ src }) => (src ? src : "../assets/images/home-bg-recent.jpeg")})
+		url(${({ src }) => (src ? src : "/public/assets/images/home-bg-recent.jpeg")})
 			no-repeat 0% 20%/cover;
 `;
 

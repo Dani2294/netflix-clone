@@ -20,7 +20,19 @@ export const Card = styled.div`
         rounded-lg
         bg-[#222]
         w-full
-        h-[300px]
+        h-[200px]
         animate-pulse
+    `}
+`;
+
+export const Box = styled.div`
+	${tw`
+        bg-[#222]
+        w-full
+        h-[400px]
+        animate-pulse
+        mt-16
+        mb-8
+
     `}
 `;

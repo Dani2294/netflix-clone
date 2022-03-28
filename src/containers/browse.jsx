@@ -4,6 +4,7 @@ import { Header, LoadingSlides, Modal, PlayerWrapper } from "../components";
 import FooterContainer from "./footer";
 import HeaderContainer from "./header";
 import SlidesContainer from "./slides";
+import { LoadingHero } from "../components/loading-slides";
 
 export default function BrowseContainer({ result }) {
 	const [content, setContent] = useState([]);
@@ -11,7 +12,7 @@ export default function BrowseContainer({ result }) {
 	const [myList, setMyList] = useState(
 		JSON.parse(localStorage.getItem("newflix-myList")) || []
 	);
-	const [featureContent, setFeatureContent] = useState([]);
+	const [featureContent, setFeatureContent] = useState(null);
 	const [modal, setModal] = useState({ isOpen: false, data: {}, video: null });
 	const [showPlayer, setShowPlayer] = useState(false);
 
@@ -81,14 +82,14 @@ export default function BrowseContainer({ result }) {
 	};
 
 	return (
-		<div className={`${modal.isOpen ? "lock-body" : ""}`}>
+		<>
 			<HeaderContainer
 				connexion
 				browsePage
 				src={`https://image.tmdb.org/t/p/original${featureContent?.poster_path}`}
 				category={category}
 				setCategory={setCategory}>
-				{featureContent && (
+				{featureContent ? (
 					<Header.Feature>
 						<Header.FeatureTitle>
 							{featureContent?.original_title ||
@@ -112,6 +113,8 @@ export default function BrowseContainer({ result }) {
 							</Header.FeatureButton>
 						</Header.FeatureButtons>
 					</Header.Feature>
+				) : (
+					<LoadingHero />
 				)}
 			</HeaderContainer>
 			{content.length > 0 ? (
@@ -183,6 +186,6 @@ export default function BrowseContainer({ result }) {
 				/>
 			)}
 			<FooterContainer />
-		</div>
+		</>
 	);
 }
