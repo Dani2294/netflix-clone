@@ -60,7 +60,7 @@ export default function BrowseContainer({ result }) {
 				}));
 			})
 			.catch((error) => {
-				//console.log(error.message);
+				console.log(error.message);
 				axios
 					.get(
 						`https://api.themoviedb.org/3/movie/${id}?api_key=750d717aee423aa3221d0ac25396478e&append_to_response=videos`

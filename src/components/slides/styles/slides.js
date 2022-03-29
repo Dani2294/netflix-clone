@@ -31,7 +31,7 @@ export const Row = styled.div`
         flex
         items-end
         mt-5
-        py-2
+        py-3
         px-6
         space-x-3
         overflow-x-scroll

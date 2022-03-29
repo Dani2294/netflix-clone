@@ -49,6 +49,26 @@ export default function HeaderContainer({ children, ...props }) {
 										</Header.DropDownText>
 									</Header.Group>
 									<Header.Group>
+										<Header.DropDownText>
+											<a
+												href="https://daniel-agbato.vercel.app/"
+												rel="noreferrer"
+												target="_blank">
+												My Portfolio
+											</a>
+										</Header.DropDownText>
+									</Header.Group>
+									<Header.Group>
+										<Header.DropDownText>
+											<a
+												href="https://github.com/Dani2294"
+												rel="noreferrer"
+												target="_blank">
+												My GitHub
+											</a>
+										</Header.DropDownText>
+									</Header.Group>
+									<Header.Group>
 										<Header.DropDownText onClick={handleSignOut}>
 											Sign Out
 										</Header.DropDownText>
