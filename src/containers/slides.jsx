@@ -12,7 +12,7 @@ export default function SlidesContainer({
 	};
 	return (
 		<>
-			{myList.length > 0 && myList[0].poster_path ? (
+			{myList.length > 0 && (
 				<Slides>
 					<Slides.Title>My List</Slides.Title>
 					<Slides.Row>
@@ -80,8 +80,6 @@ export default function SlidesContainer({
 						))}
 					</Slides.Row>
 				</Slides>
-			) : (
-				<LoadingSlides />
 			)}
 			{content.length > 0 ? (
 				content.map((item) => (
