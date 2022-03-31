@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-//const REACT_APP_FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
+const REACT_APP_FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCok-bfAyJPr-RvBRPFUsTDAQQ72UfMnL0",
+	apiKey: REACT_APP_FIREBASE_API_KEY,
 	authDomain: "netflix-f38b2.firebaseapp.com",
 	projectId: "netflix-f38b2",
 	storageBucket: "netflix-f38b2.appspot.com",

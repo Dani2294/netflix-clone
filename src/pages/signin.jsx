@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Form } from "../components";
+import { Form, ToastNotif } from "../components";
 import * as ROUTES from "../constants/routes";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import { auth } from "../lib/firebase-config";
-import useAuthStateChanged from "../hooks/useAuthStateChanged";
 
 export default function SignIn() {
 	const navigate = useNavigate();
@@ -21,19 +20,37 @@ export default function SignIn() {
 
 		try {
 			await signInWithEmailAndPassword(auth, email, password).then((res) => {
-				console.log(res);
+				//console.log(res);
+				setError("");
 				navigate(ROUTES.BROWSE);
 			});
 		} catch (error) {
-			console.log(error.message);
+			//console.log(error.code);
 			setEmail("");
 			setPassword("");
-			setError(error.message);
+			switch (error.code) {
+				case "auth/user-not-found":
+					setError("This user does not exist");
+					break;
+				case "auth/wrong-password":
+					setError("Wrong password");
+					break;
+				case "auth/invalid-email":
+					setError("This email adress is not valid");
+					break;
+				default:
+					setError(error.message);
+					break;
+			}
+			setTimeout(() => {
+				setError("");
+			}, 5000);
 		}
 	};
 
 	return (
-		<>
+		<div className="relative">
+			{error && <ToastNotif bg="#dc2626">{error}</ToastNotif>}
 			<HeaderContainer connexion={true}>
 				<Form>
 					<Form.Wrapper>
@@ -70,6 +87,6 @@ export default function SignIn() {
 				</Form>
 			</HeaderContainer>
 			<FooterContainer />
-		</>
+		</div>
 	);
 }

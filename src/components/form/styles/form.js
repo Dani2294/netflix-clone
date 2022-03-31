@@ -8,9 +8,11 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
 	${tw`
+        relative
+        top-10
         flex
         flex-col
-        py-[25px]
+        py-[50px]
         bg-[rgba(0,0,0,0.7)]
         px-[45px]
         min-h-[550px]

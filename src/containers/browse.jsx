@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, LoadingSlides, Modal, PlayerWrapper } from "../components";
+import {
+	Header,
+	LoadingSlides,
+	Modal,
+	PlayerWrapper,
+	ToastNotif,
+} from "../components";
 import FooterContainer from "./footer";
 import HeaderContainer from "./header";
 import SlidesContainer from "./slides";
@@ -12,6 +18,7 @@ export default function BrowseContainer({ result }) {
 	const [myList, setMyList] = useState(
 		JSON.parse(localStorage.getItem("newflix-myList")) || []
 	);
+	const [myListNotif, setMyListNotif] = useState({ text: "", bg: "" });
 	const [featureContent, setFeatureContent] = useState(null);
 	const [modal, setModal] = useState({ isOpen: false, data: {}, video: null });
 	const [showPlayer, setShowPlayer] = useState(false);
@@ -34,12 +41,20 @@ export default function BrowseContainer({ result }) {
 				"newflix-myList",
 				JSON.stringify([...myList, movie])
 			);
+			setMyListNotif({ text: "Added to My List", bg: "#16a34a" });
+			setTimeout(() => {
+				setMyListNotif({ text: "", bg: "" });
+			}, 2000);
 		} else if (action === "remove") {
 			const isAlreadyIn = myList.find((item) => item.id === movie.id);
 			if (isAlreadyIn) {
 				const filteredArr = myList.filter((item) => item.id !== movie.id);
 				setMyList(filteredArr);
 				localStorage.setItem("newflix-myList", JSON.stringify(filteredArr));
+				setMyListNotif({ text: "Removed from My List", bg: "#dc2626" });
+				setTimeout(() => {
+					setMyListNotif({ text: "", bg: "" });
+				}, 2000);
 			}
 		}
 	};
@@ -82,7 +97,10 @@ export default function BrowseContainer({ result }) {
 	};
 
 	return (
-		<>
+		<div className="relative">
+			{myListNotif.text && (
+				<ToastNotif bg={myListNotif.bg}>{myListNotif.text}</ToastNotif>
+			)}
 			<HeaderContainer
 				connexion
 				browsePage
@@ -186,6 +204,6 @@ export default function BrowseContainer({ result }) {
 				/>
 			)}
 			<FooterContainer />
-		</>
+		</div>
 	);
 }

@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form } from "../components";
+import { Form, ToastNotif } from "../components";
 import * as ROUTES from "../constants/routes";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
@@ -12,6 +12,7 @@ export default function SignUp() {
 	const [firstName, setFirstName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 
 	const isInvalid = firstName === "" || password === "" || email === "";
 
@@ -27,18 +28,37 @@ export default function SignUp() {
 					});
 				})
 				.then(() => {
+					setError("");
 					navigate(ROUTES.BROWSE);
 				});
 		} catch (error) {
+			//console.log(error.code);
 			console.log(error.message);
 			setFirstName("");
 			setEmail("");
 			setPassword("");
-			setError(error.message);
+			switch (error.code) {
+				case "auth/weak-password":
+					setError("Password should be at least 6 characters");
+					break;
+				case "auth/email-already-exists":
+					setError("This email adress is already used");
+					break;
+				case "auth/invalid-email":
+					setError("This email adress is not valid");
+					break;
+				default:
+					setError(error.message);
+					break;
+			}
+			setTimeout(() => {
+				setError("");
+			}, 5000);
 		}
 	};
 	return (
-		<>
+		<div className="relative">
+			{error && <ToastNotif bg="#dc2626">{error}</ToastNotif>}
 			<HeaderContainer>
 				<Form>
 					<Form.Wrapper>
@@ -81,6 +101,6 @@ export default function SignUp() {
 				</Form>
 			</HeaderContainer>
 			<FooterContainer />
-		</>
+		</div>
 	);
 }

@@ -27,7 +27,7 @@ Header.Wrapper = function HeaderWrapper({ children, ...props }) {
 
 	useEffect(() => {
 		const navBarDark = window.addEventListener("scroll", () => {
-			const isDark = window.scrollY > 10;
+			const isDark = window.scrollY > 0;
 			setIsDark(isDark);
 		});
 

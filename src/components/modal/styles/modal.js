@@ -80,6 +80,7 @@ export const Hero = styled.div`
 
 export const HeroActions = styled.div`
 	${tw`
+        relative
         flex
         items-center
         space-x-8
