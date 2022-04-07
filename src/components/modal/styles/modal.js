@@ -1,8 +1,9 @@
 import tw, { styled } from "twin.macro";
+import { motion } from "framer-motion";
 import { FeatureButton } from "../../header/styles/header";
 import { MetaButton } from "../../slides/styles/slides";
 
-export const Background = styled.div`
+export const Background = styled(motion.div)`
 	${tw`
         flex
         justify-center
@@ -18,7 +19,7 @@ export const Background = styled.div`
     `}
 `;
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
 	${tw`
         relative
         max-w-[1024px]
@@ -111,7 +112,8 @@ export const HeroActionsList = styled(MetaButton)`
 export const Content = styled.div`
 	${tw`
         px-5
-        py-12
+        py-6
+        pb-12
         text-white
         overflow-y-scroll
         overflow-x-hidden

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { useSpring, animated } from "react-spring";
+import { AnimatePresence, motion } from "framer-motion";
 import {
 	Background,
 	Container,
@@ -45,18 +45,29 @@ export default function Modal({ children, ...props }) {
 		return () => document.removeEventListener("keydown", escapePress);
 	}, [escapePress]);
 
-	const propsSpring = useSpring({
-		from: { scale: 0 },
-		to: { scale: 1 },
-		config: { duration: 350 },
-	});
+	const backdrop = {
+		hidden: { opacity: 0 },
+		visible: { opacity: 1 },
+		exit: { opacity: 0 },
+	};
+
+	const modalVariant = {
+		hidden: { scale: 0, opacity: 0, scale: 0 },
+		visible: { scale: 1, opacity: 1, scale: 1, transition: { delay: 0.5 } },
+	};
 
 	return (
-		<Background ref={modalRef} onClick={closeModalBgClick} {...props}>
-			<animated.div style={{ ...propsSpring }}>
-				<Container>{children}</Container>
-			</animated.div>
-		</Background>
+		<AnimatePresence exitBeforeEnter={true}>
+			<motion.div
+				variants={backdrop}
+				initial="hidden"
+				animate="visible"
+				exit="exit">
+				<Background ref={modalRef} onClick={closeModalBgClick} {...props}>
+					<Container variants={modalVariant}>{children}</Container>
+				</Background>
+			</motion.div>
+		</AnimatePresence>
 	);
 }
 

@@ -6,6 +6,8 @@ export default function ModalContainer({
 	modal,
 	myList,
 	handleMyList,
+	showPlayer,
+	setShowPlayer,
 }) {
 	return (
 		<Modal setModal={setModal} modal={modal}>

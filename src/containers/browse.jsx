@@ -3,7 +3,6 @@ import axios from "axios";
 import {
 	Header,
 	LoadingSlides,
-	Modal,
 	PlayerWrapper,
 	ToastNotif,
 } from "../components";
@@ -152,6 +151,8 @@ export default function BrowseContainer({ result }) {
 					modal={modal}
 					myList={myList}
 					handleMyList={handleMyList}
+					showPlayer={showPlayer}
+					setShowPlayer={setShowPlayer}
 				/>
 			)}
 			{showPlayer && (
