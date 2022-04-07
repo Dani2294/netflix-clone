@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
-import { useSpring, animated, useTransition } from "react-spring";
+import React from "react";
+import { motion } from "framer-motion";
 import {
 	Container,
 	Title,
@@ -29,15 +28,14 @@ Slides.Row = function SlidesRow({ children, ...props }) {
 };
 
 Slides.Card = function SlidesCard({ children, ...props }) {
-	const propsSpring = useSpring({
-		from: { opacity: 0, translateX: "-400px" },
-		to: { opacity: 1, translateX: "0px" },
-		config: { duration: 150 },
-	});
+	const cardVariants = {
+		hidden: { opacity: 0, x: -400 },
+		visible: { opacity: 1, x: 0, transition: { duration: 0.35 } },
+	};
 	return (
-		<animated.div style={{ ...propsSpring }}>
+		<motion.div variants={cardVariants} initial="hidden" animate="visible">
 			<Card {...props}>{children}</Card>
-		</animated.div>
+		</motion.div>
 	);
 };
 

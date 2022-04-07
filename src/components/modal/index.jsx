@@ -18,7 +18,7 @@ import {
 } from "./styles/modal";
 
 export default function Modal({ children, ...props }) {
-	//console.log(props);
+	console.log(props);
 	const { setModal, modal } = props;
 	const modalRef = useRef();
 
@@ -53,7 +53,7 @@ export default function Modal({ children, ...props }) {
 
 	const modalVariant = {
 		hidden: { scale: 0, opacity: 0, scale: 0 },
-		visible: { scale: 1, opacity: 1, scale: 1, transition: { delay: 0.5 } },
+		visible: { scale: 1, opacity: 1, scale: 1 },
 	};
 
 	return (

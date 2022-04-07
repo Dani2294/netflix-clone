@@ -1,4 +1,5 @@
 import tw, { styled } from "twin.macro";
+import { motion } from "framer-motion";
 
 export const Container = styled.div`
 	${tw`
@@ -48,7 +49,7 @@ export const Row = styled.div`
 	}
 `;
 
-export const Card = styled.div`
+export const Card = styled(motion.div)`
 	${tw`
         relative
         transition
